@@ -1,7 +1,13 @@
 ﻿@{
     ViewData["Title"] = "About";
+    ViewData["Site"] = "Educando Web";
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>Use this area to provide additional information.</p>
+<p>Professor @ViewData["Professor"]</p>
+<address>                  @*Código para indicar o site (<a href= </a>)Como informar o texto do link:
+                               Escreva o texto que vai estar no link ou utilize o ViewData*@
+    <strong>More information</strong>> <a href="http://educandoweb.com.br">@ViewData["Site"]</a>
+</address>
+ 
