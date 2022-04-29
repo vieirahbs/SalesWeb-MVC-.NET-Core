@@ -14,6 +14,11 @@ namespace SalesWebMVC.Data
         {
         }
 
-        public DbSet<SalesWebMVC.Models.Department> Department { get; set; }
+        //Antes de realizar a migração para o banco de dados por meio do Package Manager Console,
+        //é necessário acrescentar na classe Data.SalesWebMVCContext.cs
+        //as classes que foram criadas na pasta Models conforme abaixo:
+        public DbSet<Department> Department { get; set; }
+        public DbSet<Seller> Seller { get; set; }
+        public DbSet<SalesRecord> Sales { get; set; }
     }
 }
