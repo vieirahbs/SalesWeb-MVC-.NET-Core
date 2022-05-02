@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SalesWebMVC.Data;
 using SalesWebMVC.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace SalesWebMVC.Services
 {
@@ -31,7 +32,8 @@ namespace SalesWebMVC.Services
         public Seller FindById(int id)
         {
             //FirstOrDefault para caso não exista o vendedor o retorno seja nulo:
-            return _context.Seller.FirstOrDefault(obj => obj.Id == id);
+            //Para usar o método include é necessário incluir a biblioteca Microsoft.EntityFrameworkCore
+            return _context.Seller.Include(obj => obj.Department).FirstOrDefault(obj => obj.Id == id);
         }
 
         public void Remove(int id)
