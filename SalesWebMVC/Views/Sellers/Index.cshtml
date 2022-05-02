@@ -56,6 +56,7 @@
                 @Html.DisplayFor(ModelItem => item.BaseSalary)
             </td>
             <td>
+                @*Quando um desses links forem clicados, o método do controlador será acionado:*@
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a>
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
