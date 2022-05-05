@@ -8,22 +8,31 @@ namespace SalesWebMVC.Models
     public class Seller
     {
         public int Id { get; set; }
+
+        [Required(ErrorMessage = "{0} required")]//Campo obrigatório        
+        [StringLength(60, MinimumLength = 3, ErrorMessage = 
+            "{0} size should be between {2} and {1}")]//Valida quantidade de caracteres
         public string Name { get; set; }
 
-        [DataType(DataType.EmailAddress)]
+        [Required(ErrorMessage = "{0} required")]//Campo obrigatório
+        [EmailAddress(ErrorMessage = "Enter a valid email")]//Valida formato de e-mail
+        [DataType(DataType.EmailAddress)]//Cria um link para o e-mail
         public string Email { get; set; }
 
-        [Display(Name = "Birth date")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
+        [Required(ErrorMessage = "{0} required")]//Campo obrigatório
+        [Display(Name = "Birth date")]//Label
+        [DataType(DataType.Date)]//Estabelece que o campo vai ter apenas a data
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]//Estabelece o formato da data
         public DateTime BirthDate { get; set; }
-
-        [Display(Name = "Base Salary")] 
+                
+        [Required(ErrorMessage = "{0} required")]//Campo obrigatório
+        [Range(100.0, 50000.0, ErrorMessage = "{0} must be from {1} to {2}")]//Valida o alcance do valor
+        [Display(Name = "Base Salary")]//Label
         [DisplayFormat(DataFormatString = "{0:F2}")] //Formatação para 2 casas decimais "{0:F2}"
         public double BaseSalary { get; set; }
         public Department Department { get; set; }
 
-        [Display(Name = "Department")]
+        [Display(Name = "Department")]//Label
         public int DepartmentId { get; set; }
 
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
