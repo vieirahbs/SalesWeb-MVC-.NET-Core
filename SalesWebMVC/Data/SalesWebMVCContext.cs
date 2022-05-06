@@ -19,6 +19,6 @@ namespace SalesWebMVC.Data
         //as classes que foram criadas na pasta Models conforme abaixo:
         public DbSet<Department> Department { get; set; }
         public DbSet<Seller> Seller { get; set; }
-        public DbSet<SalesRecord> Sales { get; set; }
+        public DbSet<SalesRecord> SalesRecord { get; set; }
     }
 }

@@ -27,7 +27,7 @@ namespace SalesWebMVC.Controllers
             var list = await _sellerService.FindAllAsync();
             return View(list);            
         }
-
+        
         //O nome da método deve ser igual ao nome do <a asp-action="Create" em Index
         public async Task<IActionResult> Create()
         {
