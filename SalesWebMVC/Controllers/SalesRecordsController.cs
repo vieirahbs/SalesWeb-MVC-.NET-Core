@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using SalesWebMVC.Services;
 
 namespace SalesWebMVC.Controllers
@@ -42,9 +39,24 @@ namespace SalesWebMVC.Controllers
             return View(result);
         }
 
-        public IActionResult GroupingSearch()
+        public async Task<IActionResult> GroupingSearch(DateTime? minDate, DateTime? maxDate)
         {
-            return View();
+            //Caso a data não for informada, o minDate será preenchida com o ano atual,
+            //no dia 1 e mês 1:
+            if (!minDate.HasValue)
+            {
+                minDate = new DateTime(DateTime.Now.Year, 1, 1);
+            }
+            if (!maxDate.HasValue)
+            {
+                maxDate = DateTime.Now;
+            }
+
+            ViewData["minDate"] = minDate.Value.ToString("yyyy-MM-dd");
+            ViewData["maxDate"] = maxDate.Value.ToString("yyyy-MM-dd");
+            //Como é um agrupamento, a operação a ser utilizada deve ser a FindByDateGroupingAsync:
+            var result = await _salesRecordService.FindByDateGroupingAsync(minDate, maxDate);
+            return View(result);
         }
     }
 }
